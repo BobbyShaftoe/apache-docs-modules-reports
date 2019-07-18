@@ -1,0 +1,32 @@
+.. This is A COPY OF the main index.rst file which is rendered into the landing page of the documentation
+
+
+
+
+Project Documentation
+=====================
+|
+
+.. include:: include/project_summary/project_summary.rst
+
+|
+
+
+.. toctree::
+   :maxdepth: 2
+   :name: mastertoc
+   :glob:
+
+   include/project_description/*
+   include/project_modules/*
+   include/project_reference/*
+   include/meta/*
+
+
+* :ref:`genindex`
+
+
+|
+
+This documentation was last updated on |today|.
+
