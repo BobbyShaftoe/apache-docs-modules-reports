@@ -1,0 +1,78 @@
+version: '2.4'
+
+services:
+  webserver:
+    build: .
+    container_name: apache-docs-modules-reports
+    restart: on-failure
+    ports:
+      - "8080:8080"
+      - "22:22"
+    privileged: true
+    user: "default"
+#    user: "root"
+    volumes:
+      - type: bind
+        source: "/private/var/lib/docker/volumes/apache-docs-modules-reports/opt/rh/httpd24/root/etc/httpd"
+        target: "/opt/rh/httpd24/root/etc/httpd"
+        consistency: delegated
+      - type: bind
+        source: "/private/var/lib/docker/volumes/apache-docs-modules-reports/opt/rh/httpd24/root/var/www"
+        target: "/opt/rh/httpd24/root/var/www"
+        consistency: delegated
+
+
+      - type: bind
+        source: "/private/var/lib/docker/volumes/apache-docs-modules-reports/opt/rh/httpd24/root/var/web-assets"
+        target: "/opt/rh/httpd24/root/var/web-assets"
+        consistency: delegated
+
+
+#      - type: bind
+#        source: "/private/var/lib/docker/volumes/apache-docs-modules-reports/opt/rh/httpd24/root/var/projects"
+#        target: "/opt/rh/httpd24/root/var/projects"
+#        consistency: delegated
+#      - type: bind
+#        source: "/private/var/lib/docker/volumes/apache-docs-modules-reports/opt/rh/httpd24/root/var/tests"
+#        target: "/opt/rh/httpd24/root/var/tests"
+#        consistency: delegated
+#      - type: bind
+#        source: "/private/var/lib/docker/volumes/apache-docs-modules-reports/opt/rh/httpd24/root/var/books"
+#        target: "/opt/rh/httpd24/root/var/books"
+
+    tty: true
+    networks:
+      - httpd
+
+
+#/etc/sysconfig/httpd config file.
+#AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.23.0.2. Set the 'ServerName' directive globally to suppress this message
+#ServerRoot: "/opt/rh/httpd24/root/etc/httpd"
+#Main DocumentRoot: "/opt/rh/httpd24/root/var/www/html"
+#Main ErrorLog: "|/usr/bin/cat"
+#Mutex lua-ivm-shm: using_defaults
+#Mutex ssl-stapling: using_defaults
+#Mutex proxy: using_defaults
+#Mutex authn-socache: using_defaults
+#Mutex ssl-cache: using_defaults
+#Mutex default: dir="/opt/rh/httpd24/root/var/run/httpd/" mechanism=default
+#Mutex mpm-accept: using_defaults
+#Mutex cache-socache: using_defaults
+#Mutex authdigest-opaque: using_defaults
+#Mutex watchdog-callback: using_defaults
+#Mutex proxy-balancer-shm: using_defaults
+#Mutex rewrite-map: using_defaults
+#Mutex ssl-stapling-refresh: using_defaults
+#Mutex authdigest-client: using_defaults
+#PidFile: "/opt/rh/httpd24/root/var/run/httpd/httpd.pid"
+#Define: DUMP_RUN_CFG
+#User: name="default" id=1001 not_used
+#Group: name="root" id=0 not_used
+
+
+networks:
+  httpd:
+    driver: bridge
+
+
+

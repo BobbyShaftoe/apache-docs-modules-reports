@@ -1,0 +1,10 @@
+
+- include: install-dnsmasq.yml
+- include: configure-dnsmasq.yml
+
+- include: install-consul.yml
+- include: configure-consul.yml
+- include: configure-consul-services.yml
+
+- include: configure-docker.yml
+

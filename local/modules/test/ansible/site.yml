@@ -1,0 +1,8 @@
+
+- include: dump-ansible-vars.yml
+- include: os
+
+
+
+
+
